@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCX Premium LinkedIn Banner</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1A2A3A;
+            --gold: #C5A880;
+            --ivory: #F7F5F0;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #e5e5e5; /* Light grey backdrop for screenshotting */
+        }
+
+        /* Exact LinkedIn Proportions (4:1) */
+        .linkedin-banner {
+            width: 1584px;
+            height: 396px;
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ── BACKGROUND LAYER: Subtle Tech Grid & Glow ── */
+        .bg-grid {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(247,245,240,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(247,245,240,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        .bg-glow {
+            position: absolute;
+            top: -200px;
+            right: -100px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(197,168,128,0.1) 0%, rgba(26,42,58,0) 60%);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        /* ── CONTENT LAYER ── */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            /* This 480px left-margin is the "Safe Zone" so your profile pic never covers the text */
+            margin-left: 480px; 
+            border-left: 4px solid var(--gold);
+            padding-left: 40px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4.2rem;
+            color: var(--ivory);
+            line-height: 1.1;
+            margin: 0 0 15px 0;
+            max-width: 900px;
+        }
+
+        h1 span {
+            color: var(--gold);
+        }
+
+        .subheadline {
+            font-size: 1.4rem;
+            color: var(--ivory);
+            opacity: 0.7;
+            margin: 0;
+            font-weight: 300;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="linkedin-banner">
+        
+        <div class="bg-grid"></div>
+        <div class="bg-glow"></div>
+
+        <div class="content-wrapper">
+            <span class="eyebrow">Community Claims Exchange</span>
+            <h1>Bridging the gap between<br><span>care and capital.</span></h1>
+            <p class="subheadline">The intelligence layer for New York's 1115 Waiver ecosystem.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
