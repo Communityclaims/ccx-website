@@ -4,12 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Community Claims Exchange</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-
     /* ── Design Tokens ───────────────────────────────────────── */
     :root {
       --ivory:      #F7F5F0;
@@ -17,511 +13,188 @@
       --gold:       #C5A880;
       --gold-hover: #B09567;
       --max-w:      1200px;
-      --pad-v:      120px;
-      --pad-v-mob:  60px;
-      --gap:        40px;
     }
 
-    /* ── Reset ───────────────────────────────────────────────── */
+    /* ── Reset & Base ────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: 'Outfit', system-ui, sans-serif; color: var(--navy); background: var(--ivory); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
-    /* ── Base ────────────────────────────────────────────────── */
-    html {
-      font-size: 16px;
-      background: var(--ivory);
-    }
-
-    body {
-      font-family: 'Outfit', system-ui, sans-serif;
-      color: var(--navy);
-      background: var(--ivory);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── Shared: Gold Pill Button ────────────────────────────── */
+    /* ── Shared Buttons ──────────────────────────────────────── */
     .btn-gold {
-      display: inline-block;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.02em;
-      color: var(--navy);
-      background: var(--gold);
-      border: none;
-      border-radius: 999px;
-      padding: 15px 44px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 18px rgba(197, 168, 128, 0.30);
+      display: inline-block; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.02em;
+      color: var(--navy); background: var(--gold); border-radius: 999px; padding: 18px 44px; text-decoration: none; transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(197, 168, 128, 0.3);
     }
+    .btn-gold:hover { background: var(--gold-hover); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(197, 168, 128, 0.4); }
+    
+    .btn-outline {
+      display: inline-block; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.05rem;
+      color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 18px 44px; text-decoration: none; transition: all 0.3s ease;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
 
-    .btn-gold:hover,
-    .btn-gold:focus-visible {
-      background: var(--gold-hover);
-      box-shadow: 0 6px 28px rgba(197, 168, 128, 0.40);
-      transform: translateY(-3px);
-      outline: none;
-    }
-
-    .btn-gold:active {
-      transform: translateY(1px);
-      box-shadow: 0 1px 6px rgba(197, 168, 128, 0.20);
-    }
-
-    /* ── Shared: Card Typography ─────────────────────────────── */
-    .card-title {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--navy);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
-
-    .card-body {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.94rem;
-      font-weight: 400;
-      color: var(--navy);
-      opacity: 0.72;
-      line-height: 1.6;
-    }
+    /* ── NAVBAR ──────────────────────────────────────────────── */
+    nav.top-nav { background: transparent; padding: 30px 40px; display: flex; justify-content: center; position: absolute; width: 100%; top: 0; z-index: 100; }
+    .nav-inner { width: 100%; max-width: var(--max-w); display: flex; justify-content: space-between; align-items: center; }
+    .nav-brand { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--navy); text-decoration: none; font-weight: bold; }
+    .nav-brand span { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-link-item, .nav-contact { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--navy); text-decoration: none; letter-spacing: 0.05em; transition: 0.3s ease; }
+    .nav-link-item:hover, .nav-contact:hover { color: var(--gold); }
 
     /* ── HERO SECTION ────────────────────────────────────────── */
- /* ── NAVBAR ──────────────────────────────────────────────── */
- nav.top-nav {
-      background: var(--ivory);
-      padding: 24px 40px;
-      display: flex;
-      justify-content: center;
-    }
+    #hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 160px 20px 80px; background-color: var(--ivory); }
+    .eyebrow { color: var(--gold); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 20px; display: block; }
+    .hero-headline { font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 6vw, 4.5rem); color: var(--navy); line-height: 1.1; margin-bottom: 25px; max-width: 900px; }
+    .hero-subheadline { font-size: 1.25rem; opacity: 0.8; max-width: 700px; margin: 0 auto 40px; color: var(--navy); line-height: 1.6; }
 
-    .nav-inner {
-      width: 100%;
-      max-width: var(--max-w);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    /* ── PROBLEM STATS ───────────────────────────────────────── */
+    #problem-stats { background: var(--navy); color: var(--ivory); padding: 100px 32px; text-align: center; }
+    .stat-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; max-width: 900px; margin: 50px auto 0; }
+    .stat-box { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 16px; border: 1px solid rgba(197,168,128,0.2); flex: 1; min-width: 280px; }
+    .stat-box h3 { color: var(--gold); font-family: 'DM Serif Display', serif; font-size: 3.5rem; margin: 0 0 10px 0; }
+    .stat-box p { font-size: 1.1rem; margin: 0 0 15px 0; font-weight: 600; }
+    .stat-citation { font-size: 0.8rem; opacity: 0.5; }
 
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem;
-      color: var(--navy);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
+    /* ── PROCESS & VALUE GRIDS (From your original UI) ───────── */
+    #process { padding: 100px 24px; display: flex; justify-content: center; background: var(--ivory); }
+    .process-grid { width: 100%; max-width: var(--max-w); display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .process-card { width: 360px; min-width: 360px; height: 420px; border: 1px solid rgba(26,42,58,0.2); padding: 48px; display: flex; flex-direction: column; gap: 20px; background: white; transition: 0.3s ease; border-radius: 16px; }
+    .process-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 16px 40px rgba(26,42,58,0.08); }
+    .card-number { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--gold); }
+    .card-title { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--navy); line-height: 1.2; }
+    .card-body { font-size: 0.95rem; opacity: 0.7; line-height: 1.6; flex: 1; }
 
-    .nav-brand span { color: var(--gold); }
+    #value { background: white; padding: 100px 32px; }
+    .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: var(--max-w); margin: 0 auto; }
+    .value-card { border: 1.5px solid rgba(26,42,58,0.1); border-radius: 22px; padding: 44px 34px; background: var(--ivory); transition: 0.3s ease; }
+    .value-card:hover { box-shadow: 0 8px 32px rgba(26,42,58,0.08); transform: translateY(-3px); border-color: var(--gold); }
 
-    .ccx-icon {
-      width: 36px;
-      height: 36px;
-      flex-shrink: 0;
-    }
+    /* ── FINAL CTA FOOTER ────────────────────────────────────── */
+    #final-cta { background: var(--navy); padding: 120px 20px; text-align: center; position: relative; overflow: hidden; }
+    .cta-content { max-width: 850px; margin: 0 auto; position: relative; z-index: 2; }
+    .cta-content h2 { font-family: 'DM Serif Display', serif; font-size: 3.2rem; color: white; margin: 20px 0 30px; }
+    .footer-legal { background: var(--ivory); padding: 60px 20px; text-align: center; }
+    .footer-nav { display: flex; gap: 30px; justify-content: center; margin: 20px 0; }
+    .footer-nav a { color: var(--navy); text-decoration: none; font-weight: 600; opacity: 0.7; transition: 0.3s; }
+    .footer-nav a:hover { opacity: 1; color: var(--gold); }
 
-    .nav-brand span { color: var(--gold); }
-
-    .nav-contact {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--navy);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .nav-contact:hover { color: var(--gold); }
-
-    /* ── HERO SECTION ────────────────────────────────────────── */
-    header#hero {
-      background: var(--ivory);
-      padding: 60px 40px var(--pad-v);
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-inner {
-      width: 100%;
-      max-width: var(--max-w);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      padding-top: 48px;
-    }
-
-    /* HIPAA badge — absolute top-right of 1200px container */
-/* HIPAA badge — Centered above the headline */
-/* HIPAA badge — Anchored below the CTA */
-.badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 16px; /* Adds breathing room below the caption text */
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--navy);
-      border: 1.5px solid var(--navy);
-      border-radius: 8px; 
-      padding: 8px 16px;
-      opacity: 0.65; /* Slightly more muted so it doesn't overpower the Gold button */
-      text-align: left;
-      line-height: 1.3;
-    }
-.headline {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(2.6rem, 5.5vw, 4.4rem);
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      color: var(--navy);
-      max-width: 860px;
-      margin-bottom: 48px;
-    }
-
-    .cta-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .caption {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 400;
-      color: var(--navy);
-      opacity: 0.55;
-      letter-spacing: 0.01em;
-      line-height: 1.5;
-    }
-
-    /* ── PROCESS SECTION (3-step cards) ──────────────────────── */
-    section#process {
-      padding: var(--pad-v) 24px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .process-grid {
-      width: 100%;
-      max-width: var(--max-w);
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .process-card {
-      width: 360px;
-      min-width: 360px;
-      height: 420px;
-      border: 1px solid var(--navy);
-      padding: 48px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      background: var(--ivory);
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-    }
-
-    .process-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--gold);
-      box-shadow: 0 16px 40px rgba(26, 42, 58, 0.08);
-    }
-
-    /* flex: 1 pushes the tag to the card bottom */
-    .process-card .card-body { flex: 1; }
-
-    .card-number {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--gold);
-      letter-spacing: 0.04em;
-      line-height: 1;
-    }
-
-    .card-divider {
-      width: 32px;
-      height: 1px;
-      background: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .card-tag {
-      display: inline-block;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--navy);
-      border: 1px solid var(--navy);
-      border-radius: 4px;
-      padding: 4px 10px;
-      opacity: 0.45;
-      align-self: flex-start;
-    }
-
-    /* ── VALUE GRID SECTION (2×2) ────────────────────────────── */
-    section#value {
-      background: var(--ivory);
-      padding: var(--pad-v) 32px;
-    }
-
-    .value-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--gap);
-      max-width: var(--max-w);
-      margin: 0 auto;
-    }
-
-    .value-card {
-      background: #fff;
-      border: 1.5px solid var(--navy);
-      border-radius: 22px;
-      padding: 44px 34px 36px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      min-height: 220px;
-      transition: all 0.3s ease;
-    }
-
-    .value-card:hover,
-    .value-card:focus-within {
-      box-shadow: 0 8px 32px rgba(26, 42, 58, 0.11);
-      transform: translateY(-3px);
-    }
-
-    /* add spacing between title and body inside value cards */
-    .value-card .card-title { margin-bottom: 17px; }
-
-    /* ── FOOTER SECTION ──────────────────────────────────────── */
-    footer#footer {
-      background: var(--navy);
-      color: var(--ivory);
-      padding: 80px 24px;
-      text-align: center;
-    }
-
-    .footer-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .footer-eyebrow {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .footer-headline {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--ivory);
-    }
-
-    .footer-legal {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.78rem;
-      color: rgba(247, 245, 240, 0.45);
-      line-height: 1.6;
-      margin-top: 4px;
-    }
-
-    /* ── Responsive ──────────────────────────────────────────── */
-    @media (max-width: 800px) {
-      .process-card {
-        width: 100%;
-        min-width: unset;
-        height: auto;
-        min-height: 320px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      header#hero,
-      section#process,
-      section#value {
-        padding-top: var(--pad-v-mob);
-        padding-bottom: var(--pad-v-mob);
-      }
-
-      footer#footer { padding: var(--pad-v-mob) 24px; }
-
-      .headline { font-size: clamp(2rem, 7vw, 2.8rem); }
-
-      .value-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .value-card { padding: 32px 20px 28px; }
-
-      .footer-headline { font-size: 1.8rem; }
-    }
-
-    @media (max-width: 700px) {
-      /* Badge falls out of absolute position into normal flow on small screens */
-      .badge {
-        position: static;
-        margin-bottom: 28px;
-        align-self: flex-end;
-      }
-    }
-
-    @media (max-width: 400px) {
-      header#hero { padding-left: 20px; padding-right: 20px; }
-
-      .badge {
-        align-self: center;
-        font-size: 0.65rem;
-        padding: 5px 13px;
-      }
-    }
-
+    @media (max-width: 800px) { .process-card { width: 100%; min-width: unset; height: auto; } .value-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="nav-inner">
-          <a href="/" class="nav-brand">
-            <svg viewBox="0 0 100 100" class="ccx-icon" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50 15 C30.67 15 15 30.67 15 50 C15 69.33 30.67 85 50 85 C61.59 85 71.86 79.36 78.21 70.62 L60.88 53.29 C58.28 58.07 54.43 62 50 62 C43.37 62 38 56.63 38 50 C38 43.37 43.37 38 50 38 C54.43 38 58.28 41.93 60.88 46.71 L78.21 29.38 C71.86 20.64 61.59 15 50 15 Z" fill="#1A2A3A"/>
-              <path d="M68 50 L85 67 L95 57 L78 40 Z" fill="#C5A880"/>
-              <path d="M68 50 L78 60 L95 43 L85 33 Z" fill="#C5A880"/>
-            </svg>
-            Community Claims Exchange<span>.</span>
-          </a>
-          <a href="mailto:hello@ccxny.org?subject=CCX%20Inquiry" class="nav-contact">Contact Us</a>
-        </div>
-      </nav>
 
-  <!-- ── HERO ─────────────────────────────────────────────────── -->
-  <header id="hero">
-    <div class="hero-inner">
-      <p class="eyebrow">An Intelligence Layer for 1115 Waiver Claims</p>
-      <h1 class="headline">Maximize Your Impact.<br>Minimize Your Overhead.</h1>
-      
-      <div class="cta-wrap">
-        <a class="btn-gold" href="mailto:hello@ccxny.org?subject=CCX%20Audit%20Request%20Inquiry" aria-label="Request an audit for your Medicaid claims">Request Audit</a>
-        <p class="caption">Secure data routing for New York Health Homes &amp; CBOs.</p>
-        
-        <span class="badge" aria-label="HIPAA-Aligned AES-256 Encryption">
-          <span>HIPAA-Aligned<br>AES-256 Encryption</span>
-        </span>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">CCX<span>.</span></a>
+      <div class="nav-links">
+        <a href="resources.html" class="nav-link-item">RESOURCES</a>
+        <a href="mailto:hello@ccxny.org" class="nav-contact">Contact Us</a>
       </div>
+    </div>
+  </nav>
 
+  <header id="hero">
+    <div class="hero-inner" style="max-width: 900px;">
+      <span class="eyebrow">The Missing Piece of the 1115 Waiver</span>
+      <h1 class="hero-headline">Bridging the gap between <span style="color: var(--gold);">care and capital.</span></h1>
+      <p class="hero-subheadline">
+        Community Claims Exchange (CCX) is the intelligence layer that translates social care documentation into audit-ready Medicaid claims.
+      </p>
+      <div style="margin-top: 20px;">
+        <a class="btn-gold" href="mailto:hello@ccxny.org?subject=Claims%20Audit%20Request">Request a Claims Audit</a>
+      </div>
     </div>
   </header>
-  <!-- ── PROCESS (How it works) ────────────────────────────────── -->
-  <section id="process" aria-label="How it works">
-    <div class="process-grid">
 
+  <section id="problem-stats">
+    <span class="eyebrow" style="color: var(--gold);">The Administrative Leak</span>
+    <h2 style="font-family: 'DM Serif Display', serif; font-size: 2.8rem; margin-top: 15px;">Stop the 30% Leak.</h2>
+    <p style="max-width: 700px; margin: 20px auto 0; font-size: 1.2rem; opacity: 0.8; line-height: 1.6;">Under current systems, community organizations lose critical 1115 Waiver revenue to manual coding errors and payer rejections.</p>
+    
+    <div class="stat-grid">
+      <div class="stat-box">
+        <h3>18% - 30%</h3>
+        <p>Average Medicaid MCO Denial Rate</p>
+        <div class="stat-citation">Source: Dept. of Health & Human Services (OIG), 2023</div>
+      </div>
+      <div class="stat-box">
+        <h3>86%</h3>
+        <p>Of Claim Denials are Preventable</p>
+        <div class="stat-citation">Source: Medical Group Management Association (MGMA)</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="process-grid">
       <article class="process-card">
         <span class="card-number">01</span>
         <h2 class="card-title">Intelligent Claims Routing</h2>
-        <div class="card-divider"></div>
-        <p class="card-body">
-          CCX maps your 1115 Waiver service records to the correct billing codes
-          automatically, eliminating manual lookup errors and reducing denial
-          rates before submission.
-        </p>
-        <span class="card-tag">Automation</span>
+        <div style="width: 32px; height: 1px; background: var(--gold);"></div>
+        <p class="card-body">CCX maps your 1115 Waiver service records to the correct billing codes automatically, eliminating manual lookup errors and reducing denial rates before submission.</p>
       </article>
 
       <article class="process-card">
         <span class="card-number">02</span>
         <h2 class="card-title">Real-Time Compliance Monitoring</h2>
-        <div class="card-divider"></div>
-        <p class="card-body">
-          Every data packet is validated against current DOH and MCO rule sets
-          in real time. Flags surface before a claim leaves your system, not
-          weeks later in a remittance report.
-        </p>
-        <span class="card-tag">Compliance</span>
+        <div style="width: 32px; height: 1px; background: var(--gold);"></div>
+        <p class="card-body">Every data packet is validated against current DOH and MCO rule sets in real time. Flags surface before a claim leaves your system, not weeks later.</p>
       </article>
 
       <article class="process-card">
         <span class="card-number">03</span>
         <h2 class="card-title">Revenue Recovery &amp; Reporting</h2>
-        <div class="card-divider"></div>
-        <p class="card-body">
-          Dashboards built for Health Home leads and CBO directors surface
-          uncollected revenue, denial trends, and payer performance — so your
-          team acts on insight, not guesswork.
-        </p>
-        <span class="card-tag">Analytics</span>
+        <div style="width: 32px; height: 1px; background: var(--gold);"></div>
+        <p class="card-body">Dashboards built for Health Home leads and CBO directors surface uncollected revenue, denial trends, and payer performance — so your team acts on insight.</p>
       </article>
-
     </div>
   </section>
 
-  <!-- ── VALUE GRID (2×2) ──────────────────────────────────────── -->
-  <section id="value" aria-label="Value Proposition">
-    <div class="value-grid" role="list">
-
-      <article class="value-card" role="listitem" tabindex="0">
+  <section id="value">
+    <div class="value-grid">
+      <article class="value-card">
         <h2 class="card-title">Found Revenue</h2>
         <p class="card-body">Uncover the billing potential hidden in your unstructured community notes.</p>
       </article>
-
-      <article class="value-card" role="listitem" tabindex="0">
+      <article class="value-card">
         <h2 class="card-title">Zero Jargon</h2>
         <p class="card-body">No medical coding expertise required from your staff. Our AI handles the translation.</p>
       </article>
-
-      <article class="value-card" role="listitem" tabindex="0">
+      <article class="value-card">
         <h2 class="card-title">Audit-Ready</h2>
         <p class="card-body">Full transparency and HIPAA-compliant data trails for every claim generated.</p>
       </article>
-
-      <article class="value-card" role="listitem" tabindex="0">
+      <article class="value-card">
         <h2 class="card-title">Scalable Care</h2>
         <p class="card-body">Turn administrative burden into predictable revenue to grow your community impact.</p>
       </article>
-
     </div>
   </section>
 
-  <!-- ── FOOTER ────────────────────────────────────────────────── -->
-  <footer id="footer">
-    <div class="footer-inner">
-      <p class="footer-eyebrow">READY TO CAPTURE THE FULL VALUE OF YOUR CARE?</p>
-      <h2 class="footer-headline">Join the Community Claims Exchange.</h2>
-      <a
-        href="mailto:hello@ccxny.org?subject=CCX%20Partnership"
-        class="btn-gold"
-        aria-label="Get started with CCX — email hello@ccxny.org"
-      >Get Started Today</a>
-      <p class="footer-legal">© 2026 Community Claims Exchange. Secure data routing for New York Health Homes &amp; CBOs.</p>
+  <section id="final-cta">
+    <div class="cta-content">
+      <span class="eyebrow" style="color: var(--gold);">Secure the Funding Your Mission Deserves</span>
+      <h2>Ready to bridge the gap between <span style="color: var(--gold);">care and capital?</span></h2>
+      <p style="color: white; opacity: 0.85; font-size: 1.25rem; line-height: 1.6; margin-bottom: 50px;">
+        Join the Community Claims Exchange. We provide the missing infrastructure for New York’s Social Care Networks.
+      </p>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <a href="mailto:hello@ccxny.org" class="btn-gold">Request a Claims Audit</a>
+        <a href="resources.html" class="btn-outline">Explore Waiver Resources</a>
+      </div>
     </div>
+  </section>
+
+  <footer class="footer-legal">
+    <div style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--navy);">CCX<span>.</span></div>
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="resources.html">Resources</a>
+      <a href="https://linkedin.com/company/ccxny">LinkedIn</a>
+    </nav>
+    <p style="font-size: 0.85rem; opacity: 0.5;">© 2026 Community Claims Exchange. Providing the essential financial infrastructure for New York Health Homes and CBOs.</p>
   </footer>
 
 </body>
