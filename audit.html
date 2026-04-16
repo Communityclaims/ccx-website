@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CCX immutable audit ledger, WORM chain integrity verification, and deterministic audit exposure engine." />
+  <title>CCX | Audit Ledger &amp; Integrity Verification</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">CCX</a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="audit.html" aria-current="page">Audit Ledger</a></li>
+          <li><a href="network.html">Network Fidelity</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+        </ul>
+      </nav>
+      <div class="peripheral-hud visible">
+        <div class="hud-group">
+          <span class="hud-label">Velocity</span>
+          <div class="hud-value">0.50s</div>
+        </div>
+        <div class="hud-group">
+          <span class="hud-label">Fidelity</span>
+          <div class="hud-value">98.2%</div>
+        </div>
+        <div class="hud-group">
+          <span class="hud-label">Latency</span>
+          <div class="hud-value">90s</div>
+        </div>
+        <div class="hud-group">
+          <div class="seal-badge" style="font-size: 0.5rem; padding: 2px 4px; border-color: var(--ccx-outcome-gold); color: var(--ccx-outcome-gold);">AI DISCLOSURE S7263</div>
+        </div>
+        <div class="hud-group">
+          <span class="hud-label">Status</span>
+          <div class="hud-value">
+            <span class="status-heartbeat"></span>
+            <span>ACTIVE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="panel-hardened">
+      <p class="eyebrow">Verification Console</p>
+      <h1>Audit Exposure &amp; Extrapolation Engine</h1>
+      <p style="opacity: 0.7; margin-bottom: 2rem;">
+        Deterministic, reproducible projection logic with client-side SHA-256 chain simulation.
+      </p>
+
+      <div class="status-grid" style="display: flex; gap: 3rem; margin-bottom: 2rem;">
+        <div>
+          <p class="eyebrow">System Health</p>
+          <p id="integrityStatus" class="hud-panel" style="color: var(--ccx-status-live);">Awaiting Verification</p>
+        </div>
+        <div>
+          <p class="eyebrow">Session Status</p>
+          <code style="font-family: var(--font-mono); font-size: 0.85rem;">VERIFIED_HANDSHAKE</code>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <a class="btn-institutional btn-secondary" href="index.html">← Return to Dashboard</a>
+      </div>
+    </section>
+
+    <section class="panel-hardened">
+      <p class="eyebrow">Loaded from Dashboard</p>
+      <h2>Prior Diagnostic Results</h2>
+      <div id="state-summary"></div>
+    </section>
+
+    <section class="panel-hardened">
+      <p class="eyebrow">Custom Audit</p>
+      <h2>Deterministic Audit Parameters</h2>
+
+      <div class="controls-grid">
+        <div class="form-group">
+          <label class="eyebrow">Monthly Volume</label>
+          <input id="volume" type="number" value="1000" min="0" step="1" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label class="eyebrow">Audit Probability (0 – 1)</label>
+          <input id="auditProb" type="number" value="0.10" min="0" max="1" step="0.01" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label class="eyebrow">Failure Rate (0 – 1)</label>
+          <input id="failureRate" type="number" value="0.80" min="0" max="1" step="0.01" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label class="eyebrow">Extrapolation Multiplier</label>
+          <input id="multiplier" type="number" value="1.0" min="1" step="0.1" class="form-control" />
+        </div>
+      </div>
+
+      <div class="actions-row" style="display: flex; gap: 1rem; margin-top: 2rem;">
+        <button id="runAudit" type="button" class="btn-institutional">Run Deterministic Audit</button>
+        <button id="simulateTamper" type="button" class="btn-institutional" style="background: var(--ccx-outcome-gold);">Test Integrity Chain</button>
+        <button id="verifyChainBtn" type="button" class="btn-institutional btn-secondary">Verify Full Chain</button>
+      </div>
+
+      <div id="resultsPanel" class="results-panel hidden" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-alpha);">
+        <h3>Audit Output</h3>
+        <div class="kpi-grid">
+          <article class="kpi-card">
+            <p class="kpi-label">Sampled Error</p>
+            <p id="sampled" class="kpi-value">$0.00</p>
+          </article>
+          <article class="kpi-card">
+            <p class="kpi-label">Extrapolated Liability</p>
+            <p id="extrapolated" class="kpi-value">$0.00</p>
+          </article>
+          <article class="kpi-card">
+            <p class="kpi-label">Confidence Band (±15%)</p>
+            <p id="range" class="kpi-band" style="font-size: 1.25rem;">$0.00 – $0.00</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel-hardened">
+      <p class="eyebrow">Data Integrity</p>
+      <h2>Cryptographic WORM Ledger</h2>
+      <div id="worm-chain-output" class="mono-trace" style="margin-bottom: 2rem;"></div>
+      <h3>Full Ledger</h3>
+      <div id="ledger" class="mono-trace"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cta-row">
+        <a href="index.html#handshake" class="footer-handshake-btn">Initiate Technical Handshake</a>
+      </div>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h4>Statutory Alignment</h4>
+          <p>NYS 1115 Waiver Framework</p>
+          <p>18 NYCRR §521 Compliance</p>
+          <p>USCDI v3 Data Standards</p>
+          <p>HIPAA Privacy Rule</p>
+        </div>
+        <div class="footer-column">
+          <h4>System Topology</h4>
+          <p>Upstream Documentation</p>
+          <p>Parallel Case Management</p>
+          <p>Downstream Audit Defense</p>
+          <p>VBP Strategy Alignment</p>
+        </div>
+        <div class="footer-column">
+          <h4>Technical Handshake</h4>
+          <p>API Documentation</p>
+          <p>Integration Sandbox</p>
+          <p>Security Whitepaper</p>
+          <p>System Status</p>
+        </div>
+        <div class="footer-column">
+          <h4>Governance</h4>
+          <p>The Clinical Data Transformation Engine (CDTE) is a deterministic modeling layer for Social Care Networks.</p>
+          <div class="footer-integrity" style="margin-top: 1rem;">
+            <div class="seal-badge">Logic Verified</div>
+            <span id="logic-verified-status" style="font-size: 0.6rem; font-family: var(--font-mono); display: block; margin-top: 0.25rem;">LOGIC VERIFIED</span>
+            <span style="font-size: 0.6rem; opacity: 0.6;">SHA-256 SEALED</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div style="opacity: 0.6;">
+          &copy; 2026 Community Claims Exchange | Regulatory Infrastructure Layer
+        </div>
+        <div class="hud-layer" style="color: var(--ccx-outcome-gold);">
+          <span>All calculations are deterministic and reproducible. No user data is stored or transmitted.</span>
+          <span>Model: v2.4.2-NY</span>
+          <span>TS: 2026-04-15T12:40:00Z</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

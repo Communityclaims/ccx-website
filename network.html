@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CCX SCN Network Fidelity Explorer — node-level performance surveillance for NYS 1115 Waiver governance." />
+  <title>CCX | Network Fidelity Explorer &amp; SCN Performance</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">CCX</a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="audit.html">Audit Ledger</a></li>
+          <li><a href="network.html" aria-current="page">Network Fidelity</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+        </ul>
+      </nav>
+      <div class="peripheral-hud visible">
+        <div class="hud-group">
+          <span class="hud-label">Velocity</span>
+          <div class="hud-value">0.50s</div>
+        </div>
+        <div class="hud-group">
+          <span class="hud-label">Fidelity</span>
+          <div class="hud-value">98.2%</div>
+        </div>
+        <div class="hud-group">
+          <span class="hud-label">Latency</span>
+          <div class="hud-value">90s</div>
+        </div>
+        <div class="hud-group">
+          <div class="seal-badge" style="font-size: 0.5rem; padding: 2px 4px; border-color: var(--ccx-outcome-gold); color: var(--ccx-outcome-gold);">AI DISCLOSURE S7263</div>
+        </div>
+        <div class="hud-group">
+          <span class="hud-label">Status</span>
+          <div class="hud-value">
+            <span class="status-heartbeat"></span>
+            <span>ACTIVE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="panel-hardened">
+      <p class="eyebrow">Surveillance Layer</p>
+      <h1>SCN Network Fidelity Explorer<a href="#cit-1" class="citation">[1]</a></h1>
+      <div class="kpi-grid">
+        <article class="kpi-card">
+          <p class="kpi-label">Avg Screening Rate</p>
+          <p id="summary-screening" class="kpi-value">—</p>
+        </article>
+        <article class="kpi-article">
+          <p class="kpi-label">Avg Referral Completion</p>
+          <p id="summary-referral" class="kpi-value">—</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Aggregate Fidelity</p>
+          <p id="summary-fidelity" class="kpi-value">—</p>
+        </article>
+      </div>
+
+      <!-- CCX Fidelity Extensions -->
+      <div id="ccx-fidelity-extensions">
+        <section id="ccx-heatmap-module" class="ccx-extension-panel">
+          <div class="ccx-heatmap-container">
+            <h3>System Strain View</h3>
+            <p class="ccx-sub-label">
+              Reflects distribution of needs and capacity across the network.
+            </p>
+            <div class="ccx-heatmap-grid">
+              <div class="ccx-cell" data-category="housing">Housing</div>
+              <div class="ccx-cell" data-category="food">Nutrition</div>
+              <div class="ccx-cell" data-category="transport">Transportation</div>
+              <div class="ccx-cell" data-category="care">Care Access</div>
+            </div>
+            <p class="ccx-meta-label">
+              Demo Mode: Structured logic reflects NYHER-aligned system behavior using constrained datasets.
+            </p>
+          </div>
+        </section>
+
+        <section id="ccx-impact-module" class="ccx-extension-panel">
+          <div class="ccx-impact-container">
+            <h3>Operational Impact Model</h3>
+            <p class="ccx-sub-label">
+              Estimates efficiency gains from structured workflow transformation.
+            </p>
+            <div class="ccx-inputs">
+              <div class="ccx-input-group">
+                <label for="ccx-encounters">Encounters/Staff</label>
+                <input id="ccx-encounters" type="number" value="190" title="Monthly encounters per staff member" />
+              </div>
+              <div class="ccx-input-group">
+                <label for="ccx-staff">FTE Count</label>
+                <input id="ccx-staff" type="number" value="5" title="Number of staff members" />
+              </div>
+              <div class="ccx-input-group">
+                <label for="ccx-time">Manual Time (m)</label>
+                <input id="ccx-time" type="number" value="18" title="Average manual documentation time in minutes" />
+              </div>
+              <div class="ccx-input-group">
+                <label for="ccx-structured-time">Structured Time (m)</label>
+                <input id="ccx-structured-time" type="number" value="8" title="Average structured documentation time in minutes" />
+              </div>
+              <div class="ccx-input-group">
+                <label for="ccx-adults">Adult Members</label>
+                <input id="ccx-adults" type="number" value="1000" title="Total adult members for PMPM modeling" />
+              </div>
+              <div class="ccx-input-group">
+                <label for="ccx-children">Child Members</label>
+                <input id="ccx-children" type="number" value="300" title="Total child members for PMPM modeling" />
+              </div>
+            </div>
+            <div id="ccx-calc-warning" style="display: none; color: #EF4444; font-size: 0.65rem; margin-bottom: 1rem; font-family: var(--font-mono);"></div>
+            <div class="ccx-results">
+              <div id="ccx-hours" class="ccx-result-item" title="Recovered Hours = (Encounters × Staff) × Time Saved ÷ 60"></div>
+              <div id="ccx-reduction" class="ccx-result-item"></div>
+              <div id="ccx-efficiency" class="ccx-result-item"></div>
+              <div id="ccx-additional-mems" class="ccx-result-item"></div>
+              <div id="ccx-pmpm" class="ccx-result-item"></div>
+            </div>
+            <p class="ccx-sub-label" style="margin-top: 1rem; margin-bottom: 0; font-size: 0.55rem; opacity: 0.6;">
+              Derived from time-and-motion modeling aligned with NYHER benchmarks.
+            </p>
+            <p class="ccx-disclaimer">
+              Estimates are directional and based on user inputs. Not a financial or reimbursement calculation tool.
+            </p>
+            <p class="ccx-meta-label">
+              Demo Mode: Structured logic reflects NYHER-aligned system behavior using constrained datasets.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="panel-hardened grid-section">
+      <p class="eyebrow">Deterministic Fidelity Distribution</p>
+      <h2>Network Heatmap — 125 Nodes</h2>
+      <div id="node-forensic-display" class="mono-trace" style="margin-bottom: 1rem; font-size: 0.7rem; padding: 0.75rem; min-height: 2.5rem; display: flex; align-items: center;">
+        AWAITING NODE SELECTION...
+      </div>
+      <div id="networkGrid" class="fidelity-grid"></div>
+      <aside class="legend">
+        <ul class="legend-list">
+          <li><span class="legend-chip stable"></span> Stable (≥ 0.75)</li>
+          <li><span class="legend-chip medium"></span> Documentation Risk (0.58 – 0.75)</li>
+          <li><span class="legend-chip high"></span> High Audit Exposure (&lt; 0.58)</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="panel-hardened">
+      <p class="eyebrow">Forensic Detail</p>
+      <h2>Node Performance Deep-Dive</h2>
+      <div class="mono-trace" style="background: transparent; color: inherit; padding: 0; overflow-x: auto;">
+        <table id="nodeList" class="results-table">
+          <thead>
+            <tr>
+              <th scope="col" class="eyebrow">Node ID</th>
+              <th scope="col" class="eyebrow">Screening Rate</th>
+              <th scope="col" class="eyebrow">Referral Completion</th>
+              <th scope="col" class="eyebrow">Fidelity Score</th>
+              <th scope="col" class="eyebrow">Risk Tier</th>
+            </tr>
+          </thead>
+          <tbody id="nodeTableBody">
+            <tr>
+              <td colspan="5" class="no-state-msg">
+                Awaiting data — run the diagnostic on the Dashboard first.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="table-controls" class="actions-row" style="margin-top: 1.5rem; display: none; justify-content: center;">
+        <button id="toggleTable" type="button" class="btn-institutional btn-secondary" style="font-size: 0.7rem; padding: 0.5rem 1.5rem;">
+          Show Full Network Ledger
+        </button>
+      </div>
+    </section>
+
+    <section class="panel-hardened actions-panel">
+      <button id="export" type="button" class="btn-institutional">
+        Export Network Fidelity Ledger (CSV)
+      </button>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cta-row">
+        <a href="index.html#handshake" class="footer-handshake-btn">Initiate Technical Handshake</a>
+      </div>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h4>Statutory Alignment</h4>
+          <p>NYS 1115 Waiver Framework</p>
+          <p>18 NYCRR §521 Compliance</p>
+          <p>USCDI v3 Data Standards</p>
+          <p>HIPAA Privacy Rule</p>
+        </div>
+        <div class="footer-column">
+          <h4>System Topology</h4>
+          <p>Upstream Documentation</p>
+          <p>Parallel Case Management</p>
+          <p>Downstream Audit Defense</p>
+          <p>VBP Strategy Alignment</p>
+        </div>
+        <div class="footer-column">
+          <h4>Technical Handshake</h4>
+          <p>API Documentation</p>
+          <p>Integration Sandbox</p>
+          <p>Security Whitepaper</p>
+          <p>System Status</p>
+        </div>
+        <div class="footer-column">
+          <h4>Governance</h4>
+          <p>The Clinical Data Transformation Engine (CDTE) is a deterministic modeling layer for Social Care Networks.</p>
+          <div class="footer-integrity" style="margin-top: 1rem;">
+            <div class="seal-badge">Logic Verified</div>
+            <span id="logic-verified-status" style="font-size: 0.6rem; font-family: var(--font-mono); display: block; margin-top: 0.25rem;">LOGIC VERIFIED</span>
+            <span style="font-size: 0.6rem; opacity: 0.6;">SHA-256 SEALED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="citation-block">
+        <div class="citation-item" id="cit-1">
+          <span class="citation-ref">[1]</span>
+          <span>Clinical Data Transformation Engine (CDTE) Technical Specification v2.4.2-NY.</span>
+        </div>
+        <div class="citation-item">
+          <span class="citation-ref">[2]</span>
+          <span>New York State 1115 Waiver Amendment: Social Care Networks (SCN) Program Authority.</span>
+        </div>
+        <div class="citation-item">
+          <span class="citation-ref">[3]</span>
+          <span>18 NYCRR §521 - Compliance Programs for Medical Assistance Providers.</span>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div style="opacity: 0.6;">
+          &copy; 2026 Community Claims Exchange | Regulatory Infrastructure Layer
+        </div>
+        <div class="hud-layer" style="color: var(--ccx-outcome-gold);">
+          <span>All calculations are deterministic and reproducible. No user data is stored or transmitted.</span>
+          <span>Model: v2.4.2-NY</span>
+          <span>TS: 2026-04-15T12:40:00Z</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+  <script src="js/network_extensions.js"></script>
+</body>
+</html>
